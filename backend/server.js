@@ -7,6 +7,7 @@ import hpp from "hpp";
 import connectDB from "./config/db.js";
 import colors from "colors/safe.js";
 import cityRouter from "./router/cityRouter.js";
+import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 dotenv.config();
 const app = express();
 
@@ -37,6 +38,9 @@ if (MODE === "production") {
     res.send("server is running");
   });
 }
+
+// global error handler
+app.use(globalErrorHandler);
 
 const start = async () => {
   try {
