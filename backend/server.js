@@ -4,6 +4,8 @@ import path from "path";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
+import connectDB from "./config/db.js";
+import colors from "colors/safe.js";
 dotenv.config();
 const app = express();
 
@@ -32,6 +34,20 @@ if (MODE === "production") {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT} in ${MODE} mode.`);
-});
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI);
+    console.log(colors.bgCyan("Connection to db successfull"));
+    console.log("");
+    app.listen(PORT, () => {
+      console.log(colors.bgGreen(`Listening on port ${PORT} in ${MODE} mode.`));
+    });
+  } catch (error) {
+    console.log(error);
+    console.log(
+      colors.bgRed("Aborting server due to error in connection to data base")
+    );
+  }
+};
+
+start();

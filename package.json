@@ -15,6 +15,7 @@
   "author": "kapil,sweta",
   "license": "ISC",
   "devDependencies": {
+    "colors": "^1.4.0",
     "concurrently": "^9.0.1",
     "cross-env": "^7.0.3"
   },
@@ -24,6 +25,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "helmet": "^8.0.0",
     "hpp": "^0.2.3",
+    "mongoose": "^8.7.2",
     "nodemon": "^3.1.7",
     "xss-clean": "^0.1.4"
   }
