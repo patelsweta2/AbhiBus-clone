@@ -18,8 +18,6 @@ app.use(mongoSanitize()); //nosql injection atack
 // prevent Parameter pollution
 app.use(hpp());
 
-module.find({ username, password });
-
 const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "production";
 
