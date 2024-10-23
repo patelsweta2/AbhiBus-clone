@@ -6,6 +6,7 @@ import mongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
 import connectDB from "./config/db.js";
 import colors from "colors/safe.js";
+import cityRouter from "./router/cityRouter.js";
 dotenv.config();
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(express.json());
 app.use(mongoSanitize()); //nosql injection atack
 // prevent Parameter pollution
 app.use(hpp());
+
+// endpoints
+app.use("/api/cities", cityRouter);
 
 const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "production";
