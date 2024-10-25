@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "node:crypto";
+import createHashFromString from "../utils/createHashFromString.js";
 
 const phoneRegex = /^\d{10}$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -96,6 +98,15 @@ userSchema.methods.getRefreshJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET_KEY, {
     expiresIn: process.env.JWT_REFRESH_EXPIRES_TIME,
   });
+};
+
+userSchema.methods.getResetPasswordToken = function () {
+  const resetToken = crypto.randomBytes(20).toString("hex");
+  // creating hash of token and ataching it
+  this.resetPasswordToken = createHashFromString(resetToken);
+  // added 30 minute token expiry time
+  this.resetPasswordExpires = Date.now() + 30 * 60 * 1000;
+  return resetToken;
 };
 
 const User = mongoose.model("User", userSchema);
