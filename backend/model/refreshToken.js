@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 import ensureIndex from "../utils/ensureIndex.js";
 const refreshTokenSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    requied: true,
+  },
   refreshToken: {
     type: String,
     required: [true, "RefreshToken is required"],
@@ -9,7 +13,7 @@ const refreshTokenSchema = new mongoose.Schema({
   expireAt: {
     type: Date,
     required: true,
-    default: () => new Date(Date.now() * 30 * 24 * 60 * 1000), // 30 days form now
+    default: () => new Date(Date.now() + 30 * 24 * 60 * 1000), // 30 days form now
   },
 });
 

@@ -23,7 +23,7 @@ const options = {
     required: [true, "Email is required"],
     unique: true,
     validate: {
-      validator: (v) => emailRegex.test(),
+      validator: (v) => emailRegex.test(v),
       message: (props) => `${props.value} is not a valid email`,
     },
   },
@@ -34,11 +34,11 @@ const options = {
     maxLength: [24, "Password should be less than 24 character"],
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
     validate: {
-      validator: (v) => phoneRegex.test(),
+      validator: (v) => phoneRegex.test(v),
       message: (props) => `Phone number must be 10 digits,(${props.value})`,
     },
   },
@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema(options);
 
 //virtuals
 userSchema.virtual("fullName").get(function () {
-  return `${this.fullName} ${this.lastName}`;
+  return `${this.firstName} ${this.lastName}`;
 });
 
 // pre functions
