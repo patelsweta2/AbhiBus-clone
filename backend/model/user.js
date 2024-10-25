@@ -46,7 +46,7 @@ const options = {
     type: String,
     required: [true, "gender is required"],
     enum: {
-      value: ["male", "female", "others"],
+      values: ["male", "female", "others"],
       message: "{value} as gender not supported",
     },
   },
