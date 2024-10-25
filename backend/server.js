@@ -7,6 +7,7 @@ import hpp from "hpp";
 import connectDB from "./config/db.js";
 import colors from "colors/safe.js";
 import cityRouter from "./router/cityRouter.js";
+import userRouter from "./router/userRouter.js";
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 dotenv.config();
 const app = express();
@@ -24,6 +25,7 @@ app.use(hpp());
 
 // endpoints
 app.use("/api/cities", cityRouter);
+app.use("/api/users", userRouter);
 
 const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "production";
