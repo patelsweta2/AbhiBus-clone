@@ -31,7 +31,6 @@ const options = {
     type: String,
     required: [true, "Password is required"],
     minLength: [8, "Password should have 8 characters"],
-    maxLength: [24, "Password should be less than 24 character"],
   },
   phoneNumber: {
     type: String,
@@ -65,7 +64,7 @@ const options = {
     default: false,
   },
   resetPasswordToken: String,
-  resetPasswordExpires: String,
+  resetPasswordExpires: Number,
 };
 
 const userSchema = new mongoose.Schema(options);
@@ -105,7 +104,7 @@ userSchema.methods.getResetPasswordToken = function () {
   // creating hash of token and ataching it
   this.resetPasswordToken = createHashFromString(resetToken);
   // added 30 minute token expiry time
-  this.resetPasswordExpires = Date.now() + 30 * 60 * 1000;
+  this.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
   return resetToken;
 };
 
