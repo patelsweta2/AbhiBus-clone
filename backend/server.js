@@ -4,6 +4,11 @@ import path from "path";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
+import connectDB from "./config/db.js";
+import colors from "colors/safe.js";
+import cityRouter from "./router/cityRouter.js";
+import userRouter from "./router/userRouter.js";
+import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 dotenv.config();
 const app = express();
 
@@ -17,6 +22,10 @@ app.use(express.json());
 app.use(mongoSanitize()); //nosql injection atack
 // prevent Parameter pollution
 app.use(hpp());
+
+// endpoints
+app.use("/api/cities", cityRouter);
+app.use("/api/users", userRouter);
 
 const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "production";
@@ -32,6 +41,23 @@ if (MODE === "production") {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT} in ${MODE} mode.`);
-});
+// global error handler
+app.use(globalErrorHandler);
+
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI);
+    console.log(colors.bgCyan("Connection to db successfull"));
+    console.log("");
+    app.listen(PORT, () => {
+      console.log(colors.bgGreen(`Listening on port ${PORT} in ${MODE} mode.`));
+    });
+  } catch (error) {
+    console.log(error);
+    console.log(
+      colors.bgRed("Aborting server due to error in connection to data base")
+    );
+  }
+};
+
+start();
