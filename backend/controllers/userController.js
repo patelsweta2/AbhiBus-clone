@@ -58,6 +58,7 @@ export const verifyEmail = catchAsyncError(async (req, res, next) => {
   res.sendFile(path.resolve("backend", "views", "verifyEmail.html"));
 });
 
+// login user ==> post => /api/users/login
 export const login = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -111,9 +112,39 @@ export const login = catchAsyncError(async (req, res, next) => {
     });
 });
 
+// generate new Token  get => /api/users/token/new
+export const generateNewAccessToken = catchAsyncError(
+  async (req, res, next) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      return next(new CustomError("Token is not present", 400));
+    }
+    const decode = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET_KEY);
+    const dbToken = await refreshToken.findOne({
+      refreshToken,
+      userId: decode.id,
+    });
+    if (!dbToken) {
+      return next(new CustomError("Token expired or deleted", 400));
+    }
+    const user = await User.findById(dbToken.userId);
+    if (!user) return next(new CustomError("User not Found", 400));
+    const newToken = user.getAccessJwtToken();
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      token: newToken,
+      user: {
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+      },
+    });
+  }
+);
+
 export const resetPassword = catchAsyncError(async (req, res, next) => {
   const { email } = req.body;
-
   // check if user exists
   const user = await User.findOne({ email });
   if (!user) {

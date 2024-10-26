@@ -22,6 +22,7 @@ const RefreshToken = mongoose.model("RefreshToken", refreshTokenSchema);
 if (process.env.NODE_ENV === "development") {
   const indexObj = { expireAt: 1 };
   const options = { expireAfterSeconds: 0 };
-  ensureIndex(RefreshToken, indexObj, refreshTokenSchema, options);
+  // index will be created one time only
+  ensureIndex(RefreshToken, refreshTokenSchema, indexObj, options);
 }
 export default RefreshToken;

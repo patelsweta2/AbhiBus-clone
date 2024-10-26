@@ -12,5 +12,6 @@ router.route("/email/verify").get(verifyEmail);
 router.route("/login").post(login);
 router.route("/reset-password").post(resetPassword);
 router.route("/reset-password/:id").put(savePassword);
+router.route("/token/new").get(userController.generateNewAccessToken);
 
 export default router;
