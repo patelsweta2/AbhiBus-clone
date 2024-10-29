@@ -55,7 +55,7 @@ const StyledRegisterLink = styled.p`
   font-size: 0.9rem;
 `;
 
-const ResetPassword = () => {
+const ResetPassword = ({ setActiveAuthComponent }) => {
   return (
     <StyledDiv1>
       {/* <h1>Reset Password</h1> */}
@@ -72,9 +72,12 @@ const ResetPassword = () => {
       </StyledForm>
       <StyledRegisterLink>
         Don't have an account?{" "}
-        <a href="/register" style={{ color: "#dc635b" }}>
+        <p
+          onClick={() => setActiveAuthComponent("register")}
+          style={{ color: "#dc635b", cursor: "pointer" }}
+        >
           Register Now
-        </a>
+        </p>
       </StyledRegisterLink>
     </StyledDiv1>
   );

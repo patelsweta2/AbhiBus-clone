@@ -1,11 +1,9 @@
-import React from "react";
-import LandingPage from "./screens/LandingPage";
-
+import { Outlet } from "react-router-dom";
 const App = () => {
   return (
-    <div>
-      <LandingPage />
-    </div>
+    <>
+      <Outlet />
+    </>
   );
 };
 

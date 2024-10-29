@@ -75,7 +75,7 @@ const StyledOption = styled.option`
   }
 `;
 
-const SignUp = () => {
+const SignUp = ({ setActiveAuthComponent }) => {
   return (
     <StyledDiv1>
       {/* <h1>SignUp to AbhiBus</h1> */}
@@ -120,7 +120,10 @@ const SignUp = () => {
       </StyledForm>
       <StyledRegisterLink>
         Already have an account?{" "}
-        <a href="/register" style={{ color: "#dc635b" }}>
+        <a
+          onClick={() => setActiveAuthComponent("login")}
+          style={{ color: "#dc635b", cursor: "pointer" }}
+        >
           Login Now
         </a>
       </StyledRegisterLink>
