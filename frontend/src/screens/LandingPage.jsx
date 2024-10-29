@@ -3,7 +3,7 @@ import NavBar from "../components/home/NavBar";
 import styled from "styled-components";
 import AbhiBus from "../public/AbhiBusHero.jpg";
 import Search from "../components/home/search/Search";
-import SearchMobile from "../components/home/search/SearchMobile";
+// import SearchMobile from "../components/home/search/SearchMobile";
 // import ErrorBoundary from "../components/ErrorBoundary";
 
 const StyledDiv = styled.div`

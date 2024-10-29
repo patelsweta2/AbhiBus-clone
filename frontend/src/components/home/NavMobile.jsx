@@ -41,9 +41,13 @@ const StyledA2 = styled.a`
   column-gap: 0.25rem;
   color: #dc635b;
   vertical-align: middle;
+  border-radius: 10px;
+  border: 2px solid black;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
+
+  &:hover {
+    background-color: #e9e6e6;
+  }
 `;
 
 const NavMobile = () => {
@@ -80,7 +84,7 @@ const NavMobile = () => {
                 width="1.5rem"
                 height="1.5rem"
                 fill="currentColor"
-                class="ic_person_svg__bi ic_person_svg__bi-person-fill"
+                className="ic_person_svg__bi ic_person_svg__bi-person-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>

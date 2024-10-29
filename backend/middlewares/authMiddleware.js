@@ -6,7 +6,7 @@ export const Authenticate = catchAsyncError(async (req, res, next) => {
   const AUTHORIZATION = "Authorization";
   if (
     req.headers[AUTHORIZATION] &&
-    req.headers[AUTHORIZATION].includes("Brear")
+    req.headers[AUTHORIZATION].includes("Bearer")
   ) {
     token = req.headers[AUTHORIZATION].split(" ")[1];
   }

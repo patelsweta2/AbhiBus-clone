@@ -1,5 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import Login from "../auth/Login";
+import ResetPassword from "../auth/ResetPassword";
+import SignUp from "../auth/SignUp";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -7,7 +10,6 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 0.5rem 0.5rem;
   height: 5rem;
-  // border: 1px solid #000;
 
   @media only screen and (max-width: 1280px) {
     border: 1px solid #000;
@@ -32,6 +34,7 @@ const StyledDiv = styled.div`
 
 const StyledA1 = styled.a`
   cursor: pointer;
+  padding: 10px 20px;
 `;
 
 const StyledA = styled.a`
@@ -40,12 +43,64 @@ const StyledA = styled.a`
   place-content: center;
   place-items: center;
   column-gap: 0.25rem;
+  padding: 10px 20px;
   color: #dc635b;
   vertical-align: middle;
   cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #e9e6e6;
+  }
+`;
+const StyledDiv1 = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+`;
+
+const StyledDiv2 = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  z-index: 1000;
+`;
+
+const StyledH2 = styled.h2`
+  margin-top: 0.3rem;
+  font-weight: 500;
+  text-align: center;
+  color: #dc635b;
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 `;
 
 const NavBar = () => {
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const showModel = () => setIsModelOpen(true);
+  const closeModel = () => setIsModelOpen(false);
   return (
     <StyledHeader>
       <StyledDiv>
@@ -72,14 +127,20 @@ const NavBar = () => {
           </svg>
         </StyledA1>
         {/* <a href="">About</a> */}
-        <StyledA href="">
+        <StyledA
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            showModel();
+          }}
+        >
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.5rem"
               height="1.5rem"
               fill="currentColor"
-              class="ic_person_svg__bi ic_person_svg__bi-person-fill"
+              className="ic_person_svg__bi ic_person_svg__bi-person-fill"
               viewBox="0 0 16 16"
             >
               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
@@ -88,6 +149,19 @@ const NavBar = () => {
           <span>Login/SignUp</span>
         </StyledA>
       </StyledDiv>
+      {isModelOpen && (
+        <>
+          <StyledDiv1 />
+          <StyledDiv2>
+            {/* <StyledH2>Login to Abhibus</StyledH2> */}
+            <StyledH2>Register to Abhibus</StyledH2>
+            <StyledButton onClick={closeModel}>&times;</StyledButton>
+            {/* <Login /> */}
+            {/* <SignUp /> */}
+            <ResetPassword />
+          </StyledDiv2>
+        </>
+      )}
     </StyledHeader>
   );
 };

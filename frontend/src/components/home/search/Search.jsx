@@ -36,18 +36,15 @@ const StyledDiv3 = styled.div`
   display: block;
   flex: 0 0 auto;
   width: auto;
-  font-size: 1rem;
 `;
 
 const StyledDiv4 = styled.div`
   flex: 0 0 auto;
-  font-size: 1rem;
 `;
 
 const StyledDiv11 = styled.button`
   flex: 1 0 150px !important;
   width: auto;
-  font-size: 1rem;
 `;
 const StyledButton1 = styled.button`
   display: flex;
@@ -70,7 +67,6 @@ const StyledButton1 = styled.button`
   border: none;
   text-decoration: none;
   text-align: center;
-  user-select: none;
 `;
 
 const Search = () => {

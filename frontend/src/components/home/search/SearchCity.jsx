@@ -84,7 +84,6 @@ const SearchCity = () => {
                 type="text"
                 tabIndex="0"
                 placeholder="From Station"
-                value=""
               />
             </StyledDiv6>
           </StyledDiv4>

@@ -17,7 +17,6 @@ const StyledDiv6 = styled.div`
   align-items: normal;
   display: flex;
   width: 100%;
-  font-size: 1rem;
 `;
 
 const StyledDiv7 = styled.div`
@@ -29,7 +28,6 @@ const StyledDiv7 = styled.div`
   padding: 0.5rem;
   background-color: #fff;
   border: 1px solid #f2f2f2;
-  font-size: 1rem;
   line-height: 1rem;
   width: 100%;
   border-radius: 0.5rem;
@@ -46,9 +44,7 @@ const StyledDiv8 = styled.div`
 
 const StyledDiv9 = styled.div`
   flex: 1 0;
-  font-size: 1rem;
   line-height: 1rem;
-  caret-color: #dc635b;
 `;
 
 const StyledInput = styled.input`
@@ -57,7 +53,6 @@ const StyledInput = styled.input`
   border: unset;
   background: unset;
   outline: unset;
-  font-size: 1rem;
   color: #212121;
   margin-left: 0.25rem;
   overflow-clip-margin: 0px !important;
@@ -69,7 +64,6 @@ const StyledInput = styled.input`
 const StyledDiv10 = styled.div`
   flex: 0 0 auto;
   width: auto;
-  font-size: 1rem;
   line-height: 1rem;
   caret-color: #dc635b;
 `;
@@ -91,7 +85,6 @@ const StyledButton = styled.button`
   width: auto;
   height: auto;
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
 `;
 
 const SearchDate = () => {

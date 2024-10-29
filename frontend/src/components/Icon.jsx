@@ -89,3 +89,39 @@ export const MobileArrowIcon = () => (
     ></path>
   </svg>
 );
+
+export const MobileSourceIcon = () => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="svg-icon"
+    style={{
+      verticalAlign: "middle",
+      marginRight: "10px",
+      fontSize: "24px",
+      width: "24px",
+      height: "24px",
+    }}
+  >
+    <path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"></path>
+  </svg>
+);
+
+export const DateIcon = () => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="svg-icon"
+    style={{
+      width: "30px",
+      height: "30px",
+      color: "rgb(220, 99, 91)",
+    }}
+  >
+    <path d="M7 10l5 5 5-5z"></path>
+  </svg>
+);
