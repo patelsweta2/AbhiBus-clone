@@ -3,7 +3,7 @@ import ensureIndex from "../utils/ensureIndex.js";
 const refreshTokenSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    requied: true,
+    required: true,
   },
   refreshToken: {
     type: String,
