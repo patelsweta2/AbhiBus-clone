@@ -7,7 +7,12 @@ import {
   RouterProvider,
   createRoutesFromElements,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/configureStore.js";
 const App = lazy(() => import("./App.jsx"));
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const LandingPage = lazy(() => import("./screens/LandingPage"));
 const CustomSuspense = ({ children }) => {
   return <Suspense fallBack={<h3>Loading...</h3>}>{children}</Suspense>;
@@ -38,6 +43,9 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <ToastContainer autoClose={1300} />
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

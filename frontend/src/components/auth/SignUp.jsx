@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { createUserSignUpAction } from "../../store/user/userSlice";
 
 const StyledDiv1 = styled.div`
   display: flex;
@@ -76,42 +78,66 @@ const StyledOption = styled.option`
 `;
 
 const SignUp = ({ setActiveAuthComponent }) => {
+  const dispatch = useDispatch();
+  const formRef = useRef(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {};
+    Array.from(formRef.current.elements).forEach((ele) => {
+      if (ele.id) data[ele.id] = ele.value;
+    });
+    dispatch(createUserSignUpAction({ data }));
+  };
   return (
     <StyledDiv1>
       {/* <h1>SignUp to AbhiBus</h1> */}
-      <StyledForm onSubmit="">
+      <StyledForm ref={formRef} onSubmit={handleSubmit}>
         <StyledDiv2>
-          <StyledLabel htmlFor="">FirstName:</StyledLabel>
-          <StyledInput type="text" placeholder="Enter your first name" />
+          <StyledLabel htmlFor="firstName">FirstName:</StyledLabel>
+          <StyledInput
+            id="firstName"
+            type="text"
+            placeholder="Enter your first name"
+          />
         </StyledDiv2>
         <StyledDiv2>
-          <StyledLabel htmlFor="">LastName:</StyledLabel>
-          <StyledInput type="text" placeholder="Enter your last name" />
+          <StyledLabel htmlFor="lastName">LastName:</StyledLabel>
+          <StyledInput
+            id="lastName"
+            type="text"
+            placeholder="Enter your last name"
+          />
         </StyledDiv2>
         <StyledDiv2>
-          <StyledLabel htmlFor="">Email:</StyledLabel>
-          <StyledInput type="text" placeholder="Enter your email" />
+          <StyledLabel htmlFor="email">Email:</StyledLabel>
+          <StyledInput id="email" type="email" placeholder="Enter your email" />
         </StyledDiv2>
         <StyledDiv2>
-          <StyledLabel htmlFor="">PhoneNumber</StyledLabel>
-          <StyledInput type="text" placeholder="Enter your phone-number" />
+          <StyledLabel htmlFor="phone">PhoneNumber</StyledLabel>
+          <StyledInput
+            type="number"
+            id="phone"
+            placeholder="Enter your phone-number"
+          />
         </StyledDiv2>
         <StyledDiv2>
-          <StyledLabel htmlFor="">Gender</StyledLabel>
-          <StyledSelect name="gender">
+          <StyledLabel htmlFor="gender">Gender</StyledLabel>
+          <StyledSelect id="gender">
+            <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
+            <option value="others">others</option>
           </StyledSelect>
         </StyledDiv2>
         <StyledDiv2>
-          <StyledLabel>Age:</StyledLabel>
-          <StyledInput type="number" name="age" placeholder="Enter your age" />
+          <StyledLabel htmlFor="age">Age:</StyledLabel>
+          <StyledInput type="number" id="age" placeholder="Enter your age" />
         </StyledDiv2>
         <StyledDiv2>
-          <StyledLabel>Password:</StyledLabel>
+          <StyledLabel htmlFor="password">Password:</StyledLabel>
           <StyledInput
             type="password"
-            name="password"
+            id="password"
             required
             placeholder="Enter Password"
           />
